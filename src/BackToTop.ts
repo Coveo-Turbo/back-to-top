@@ -1,4 +1,4 @@
-import { Component, IComponentBindings, ComponentOptions } from 'coveo-search-ui';
+import { Component, IComponentBindings, ComponentOptions, IAnalyticsActionCause } from 'coveo-search-ui';
 import { lazyComponent } from '@coveops/turbo-core';
 
 export interface IBackToTopOptions { }
@@ -26,9 +26,19 @@ export class BackToTop extends Component {
         let toTopButton = Coveo.$$('button', { class: 'coveo-back-to-top' }, buttonText).el;
 
         Coveo.$$(toTopButton).on('click', () => {
-            this.toTop()
+            this.logCustomEvent();
+            this.toTop();
         });
 
         this.element.appendChild(toTopButton);
+    }
+
+    protected logCustomEvent() {
+        const actionCause: IAnalyticsActionCause = {
+            name: 'backToTop',
+            type: 'misc'
+        };
+
+        this.usageAnalytics.logCustomEvent(actionCause, {}, this.element);
     }
 }
