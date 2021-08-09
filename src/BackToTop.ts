@@ -1,12 +1,18 @@
-import { Component, IComponentBindings, ComponentOptions, IAnalyticsActionCause } from 'coveo-search-ui';
+import { Component, IComponentBindings, ComponentOptions, IAnalyticsActionCause, l } from 'coveo-search-ui';
 import { lazyComponent } from '@coveops/turbo-core';
 
-export interface IBackToTopOptions { }
+export interface IBackToTopOptions {
+    textCaption?: string;
+    shouldBeLocalized?: boolean;
+ }
 
 @lazyComponent
 export class BackToTop extends Component {
     static ID = 'BackToTop';
-    static options: IBackToTopOptions = {};
+    static options: IBackToTopOptions = {
+        textCaption: ComponentOptions.buildLocalizedStringOption({defaultValue: 'Back to Top'}),
+        shouldBeLocalized: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+    };
 
     constructor(public element: HTMLElement, public options: IBackToTopOptions, public bindings: IComponentBindings) {
         super(element, BackToTop.ID, bindings);
@@ -21,8 +27,9 @@ export class BackToTop extends Component {
     }
 
     public render() {
-
-        let buttonText = Coveo.$$('div', { id: 'text' }, Coveo.l('BackToTop')).el;
+        let textValue = this.options.textCaption;
+        if (this.options.shouldBeLocalized) { textValue = l(textValue); }
+        let buttonText = Coveo.$$('div', { id: 'text' }, textValue).el;
         let toTopButton = Coveo.$$('button', { class: 'coveo-back-to-top' }, buttonText).el;
 
         Coveo.$$(toTopButton).on('click', () => {
