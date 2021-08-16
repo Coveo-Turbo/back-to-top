@@ -50,11 +50,12 @@ Place the component in your markup:
 
 The following options can be configured:
 
-|       Option        | Required |  Type   |          Default           |                             Notes                    |
-| ------------------- | -------- | ------- | -------------------------- | ---------------------------------------------------- |
-| `titleCaption`      | No       | string  | `Back to Top`              | Specifies value for the element's `title` attribute. |
-| `textCaption`       | No       | string  | `Back to Top`              | Specifies the text value of the button.              |
-| `shouldBeLocalized` | No       | boolean | `false`                    | Specifies whether to translate the button value.     |
+|       Option        | Required |  Type   |          Default           |                             Notes                         |
+| ------------------- | -------- | ------- | -------------------------- | --------------------------------------------------------- |
+| `titleCaption`      | No       | string  | `Back to Top`              | Specifies value for the element's `title` attribute.      |
+| `textCaption`       | No       | string  | `Back to Top`              | Specifies the text value of the button.                   |
+| `scrollBehavior`    | No       | string  | `auto`                     | Specifies the scroll behavior. Can be `auto` or `smooth`. |
+| `shouldBeLocalized` | No       | boolean | `false`                    | Specifies whether to translate the button value.          |
 
 ## Extending
 

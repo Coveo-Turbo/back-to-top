@@ -5,6 +5,7 @@ export interface IBackToTopOptions {
     shouldBeLocalized?: boolean;
     titleCaption?: string;
     textCaption?: string;
+    scrollBehavior?:string;
 }
 
 @lazyComponent
@@ -14,6 +15,7 @@ export class BackToTop extends Component {
         shouldBeLocalized: ComponentOptions.buildBooleanOption({ defaultValue: false }),
         titleCaption: ComponentOptions.buildLocalizedStringOption({ defaultValue: 'Back to Top' }),
         textCaption: ComponentOptions.buildLocalizedStringOption({ defaultValue: 'Back to Top' }),
+        scrollBehavior: ComponentOptions.buildStringOption({defaultValue: 'auto'}),
     };
 
     constructor(public element: HTMLElement, public options: IBackToTopOptions, public bindings: IComponentBindings) {
@@ -24,8 +26,9 @@ export class BackToTop extends Component {
     }
 
     private toTop() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+        document.body.scrollTo({top: 0, behavior: this.options.scrollBehavior as ScrollBehavior}); // For Safari
+        document.documentElement.scrollTo({top: 0, behavior: this.options.scrollBehavior as ScrollBehavior}); // For Chrome, Firefox, IE and Opera
     }
 
     public render() {
