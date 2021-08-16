@@ -2,16 +2,18 @@ import { Component, IComponentBindings, ComponentOptions, IAnalyticsActionCause,
 import { lazyComponent } from '@coveops/turbo-core';
 
 export interface IBackToTopOptions {
-    textCaption?: string;
     shouldBeLocalized?: boolean;
- }
+    titleCaption?: string;
+    textCaption?: string;
+}
 
 @lazyComponent
 export class BackToTop extends Component {
     static ID = 'BackToTop';
     static options: IBackToTopOptions = {
-        textCaption: ComponentOptions.buildLocalizedStringOption({defaultValue: 'Back to Top'}),
         shouldBeLocalized: ComponentOptions.buildBooleanOption({ defaultValue: false }),
+        titleCaption: ComponentOptions.buildLocalizedStringOption({ defaultValue: 'Back to Top' }),
+        textCaption: ComponentOptions.buildLocalizedStringOption({ defaultValue: 'Back to Top' }),
     };
 
     constructor(public element: HTMLElement, public options: IBackToTopOptions, public bindings: IComponentBindings) {
@@ -28,9 +30,12 @@ export class BackToTop extends Component {
 
     public render() {
         let textValue = this.options.textCaption;
-        if (this.options.shouldBeLocalized) { textValue = l(textValue); }
-        let buttonText = Coveo.$$('div', { id: 'text' }, textValue).el;
-        let toTopButton = Coveo.$$('button', { class: 'coveo-back-to-top' }, buttonText).el;
+        let titleCaption = this.options.titleCaption;
+        if (this.options.shouldBeLocalized) {
+            textValue = l(textValue);
+            titleCaption = l(titleCaption);
+        }
+        let toTopButton = Coveo.$$('button', { class: 'coveo-back-to-top', title: titleCaption }, textValue).el;
 
         Coveo.$$(toTopButton).on('click', () => {
             this.logCustomEvent();

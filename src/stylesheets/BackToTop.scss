@@ -1,8 +1,25 @@
 .CoveoBackToTop {
     button.coveo-back-to-top {
-        color: #cddee9;
-        background-color: #1d4f76;
-        border: none;
-        padding: 5px;
+        float: right;
+        border: thin solid #7e8c9a;
+        border-radius: 2px;
+        margin: 5px 6px;
+        padding: 4px 8px;
+        list-style: none;
+        // display: inline-block;
+        vertical-align: baseline;
+        color: #0059b3;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #FFF;
+
+        &:hover {
+            color: #cddee9;
+            background-color: #1d4f76;
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 }

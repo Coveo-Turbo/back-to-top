@@ -46,6 +46,16 @@ Place the component in your markup:
 <div class="CoveoBackToTop"></div>
 ```
 
+## Options
+
+The following options can be configured:
+
+|       Option        | Required |  Type   |          Default           |                             Notes                    |
+| ------------------- | -------- | ------- | -------------------------- | ---------------------------------------------------- |
+| `titleCaption`      | No       | string  | `Back to Top`              | Specifies value for the element's `title` attribute. |
+| `textCaption`       | No       | string  | `Back to Top`              | Specifies the text value of the button.              |
+| `shouldBeLocalized` | No       | boolean | `false`                    | Specifies whether to translate the button value.     |
+
 ## Extending
 
 Extending the component can be done as follows:
